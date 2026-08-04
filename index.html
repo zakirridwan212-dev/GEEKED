@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEEKED - E-Commerce</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4; }
+        header { text-align: center; padding: 10px 0; }
+        h1 { color: #111; margin-bottom: 5px; letter-spacing: 2px; }
+        .subtitle { color: #666; font-size: 15px; margin-bottom: 20px; }
+        .section-title { text-align: center; color: #222; margin: 30px 0 15px 0; font-size: 20px; border-bottom: 2px solid #ddd; padding-bottom: 8px; max-width: 1000px; margin-left: auto; margin-right: auto; }
+        .product-grid { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; max-width: 1000px; margin: 0 auto; }
+        .product-card { background: #fff; border: 1px solid #ddd; padding: 15px; width: 210px; text-align: center; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.05); margin-bottom: 20px; }
+        .product-card img { width: 100%; height: 200px; object-fit: cover; border-radius: 6px; }
+        .product-title { font-size: 14px; font-weight: bold; margin: 10px 0 6px 0; color: #333; }
+        .product-price { color: #000; font-size: 15px; font-weight: bold; margin-bottom: 12px; }
+        .btn { background: #000; color: #fff; padding: 8px 0; width: 100%; border: none; border-radius: 4px; cursor: pointer; font-size: 14px; font-weight: bold; }
+        .btn:hover { background: #333; }
+
+        /* Modal Overlay */
+        .modal { display: none; position: fixed; z-index: 100; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); justify-content: center; align-items: center; }
+        .modal-content { background: #fff; padding: 20px; border-radius: 8px; width: 90%; max-width: 400px; box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+        .modal-content h2 { margin-top: 0; font-size: 18px; color: #222; }
+        .form-group { margin-bottom: 12px; text-align: left; }
+        .form-group label { display: block; font-size: 13px; margin-bottom: 4px; font-weight: bold; }
+        .form-group input, .form-group select { width: 100%; padding: 8px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        .payment-info { background: #f9f9f9; padding: 10px; border-radius: 5px; font-size: 13px; margin-bottom: 15px; border-left: 3px solid #000; }
+        .close-btn { background: #ccc; color: #333; margin-top: 5px; }
+        .close-btn:hover { background: #b5b5b5; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>GEEKED</h1>
+        <div class="subtitle">ኦሪጅናል ጥራት ያላቸው ቲ-ሸርቶች</div>
+    </header>
+
+    <!-- ባለ 700 ብር ቲ-ሸርቶች -->
+    <div class="section-title">ልሙጥ ቲ-ሸርቶች (Plain T-Shirts)</div>
+    <div class="product-grid">
+        <div class="product-card">
+            <img src="tshirt-white-1.jpg" alt="ልሙጥ ነጭ ቲሸርት">
+            <div class="product-title">ልሙጥ ነጭ ቲ-ሸርት</div>
+            <div class="product-price">700 ብር</div>
+            <button class="btn" onclick="openOrderModal('ልሙጥ ነጭ ቲ-ሸርት', 700)">ግዛ (Order)</button>
+        </div>
+        <div class="product-card">
+            <img src="tshirt-white-2.jpg" alt="ልሙጥ ነጭ ቲሸርት">
+            <div class="product-title">ልሙጥ ነጭ ቲ-ሸርት</div>
+            <div class="product-price">700 ብር</div>
+            <button class="btn" onclick="openOrderModal('ልሙጥ ነጭ ቲ-ሸርት', 700)">ግዛ (Order)</button>
+        </div>
+        <div class="product-card">
+            <img src="tshirt-black-1.jpg" alt="ልሙጥ ጥቁር ቲሸርት">
+            <div class="product-title">ልሙጥ ጥቁር ቲ-ሸርት</div>
+            <div class="product-price">700 ብር</div>
+            <button class="btn" onclick="openOrderModal('ልሙጥ ጥቁር ቲ-ሸርት', 700)">ግዛ (Order)</button>
+        </div>
+        <div class="product-card">
+            <img src="tshirt-black-2.jpg" alt="ልሙጥ ጥቁር ቲሸርት">
+            <div class="product-title">ልሙጥ ጥቁር ቲ-ሸርት</div>
+            <div class="product-price">700 ብር</div>
+            <button class="btn" onclick="openOrderModal('ልሙጥ ጥቁር ቲ-ሸርት', 700)">ግዛ (Order)</button>
+        </div>
+    </div>
+
+    <!-- ባለ 1300 ብር ዲዛይን ቲ-ሸርቶች -->
+    <div class="section-title">ዲዛይን እና አርት ቲ-ሸርቶች (Graphic T-Shirts)</div>
+    <div class="product-grid">
+        <div class="product-card">
+            <img src="ronaldo-tshirt.jpg" alt="ክሪስቲያኖ ሮናልዶ ቲሸርት">
+            <div class="product-title">ክሪስቲያኖ ሮናልዶ ቲ-ሸርት</div>
+            <div class="product-price">1,300 ብር</div>
+            <button class="btn" onclick="openOrderModal('ክሪስቲያኖ ሮናልዶ ቲ-ሸርት', 1300)">ግዛ (Order)</button>
+        </div>
+        <div class="product-card">
+            <img src="drake-tshirt.jpg" alt="ድሬክ ቲሸርት">
+            <div class="product-title">ድሬክ (Drake) ቲ-ሸርት</div>
+            <div class="product-price">1,300 ብር</div>
+            <button class="btn" onclick="openOrderModal('ድሬክ (Drake) ቲ-ሸርት', 1300)">ግዛ (Order)</button>
+        </div>
+        <div class="product-card">
+            <img src="weeknd-tshirt.jpg" alt="ዘ ዊኬንድ ቲሸርት">
+            <div class="product-title">ዘ ዊኬንድ ቲ-ሸርት</div>
+            <div class="product-price">1,300 ብር</div>
+            <button class="btn" onclick="openOrderModal('ዘ ዊኬንድ ቲ-ሸርት', 1300)">ግዛ (Order)</button>
+        </div>
+        <div class="product-card">
+            <img src="asap-tshirt.jpg" alt="አሳፕ ሮኪ ቲሸርት">
+            <div class="product-title">አሳፕ ሮኪ ቲ-ሸርት</div>
+            <div class="product-price">1,300 ብር</div>
+            <button class="btn" onclick="openOrderModal('አሳፕ ሮኪ ቲ-ሸርት', 1300)">ግዛ (Order)</button>
+        </div>
+        <div class="product-card">
+            <img src="youngboy-1.jpg" alt="ዮንግቦይ ቲሸርት">
+            <div class="product-title">አይ ዮንግቦይ ቲ-ሸርት</div>
+            <div class="product-price">1,300 ብር</div>
+            <button class="btn" onclick="openOrderModal('አይ ዮንግቦይ ቲ-ሸርት', 1300)">ግዛ (Order)</button>
+        </div>
+        <div class="product-card">
+            <img src="youngboy-2.jpg" alt="ዮንግቦይ 38 ቤቢ ቲሸርት">
+            <div class="product-title">ዮንግቦይ 38 Baby ቲ-ሸርት</div>
+            <div class="product-price">1,300 ብር</div>
+            <button class="btn" onclick="openOrderModal('ዮንግቦይ 38 Baby ቲ-ሸርት', 1300)">ግዛ (Order)</button>
+        </div>
+        <div class="product-card">
+            <img src="dont-talk-tshirt.jpg" alt="Crazy Girlfriend ቲሸርት">
+            <div class="product-title">"Crazy Girlfriend" ቲ-ሸርት</div>
+            <div class="product-price">1,300 ብር</div>
+            <button class="btn" onclick="openOrderModal('Crazy Girlfriend ቲ-ሸርት', 1300)">ግዛ (Order)</button>
+        </div>
+        <div class="product-card">
+            <img src="emoji-tshirt.jpg" alt="ኢሞጂ ቲሸርት">
+            <div class="product-title">ኢሞጂ ዲዛይን ቲ-ሸርት</div>
+            <div class="product-price">1,300 ብር</div>
+            <button class="btn" onclick="openOrderModal('ኢሞጂ ዲዛይን ቲ-ሸርት', 1300)">ግዛ (Order)</button>
+        </div>
+        <div class="product-card">
+            <img src="animal-art-tshirt.jpg" alt="አርት ቲሸርት">
+            <div class="product-title">ክሪኤቲቭ አርት ቲ-ሸርት</div>
+            <div class="product-price">1,300 ብር</div>
+            <button class="btn" onclick="openOrderModal('ክሪኤቲቭ አርት ቲ-ሸርት', 1300)">ግዛ (Order)</button>
+        </div>
+    </div>
+
+    <!-- Order Modal -->
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <h2 id="modalTitle">ትዕዛዝ መሙያ</h2>
+            <div class="payment-info">
+                <b>የክፍያ አካውንቶች:</b><br>
+                - CBE: <b>1000744476918</b> (ኢምራን)<br>
+                - Telebirr: <b>0929095285</b> (ሳልህ)
+            </div>
+            <form id="orderForm" onsubmit="submitOrder(event)">
+                <div class="form-group">
+                    <label>ስምዎ:</label>
+                    <input type="text" id="custName" required placeholder="ሙሉ ስም ያስገቡ">
+                </div>
+                <div class="form-group">
+                    <label>ስልክ ቁጥር:</label>
+                    <input type="text" id="custPhone" required placeholder="09...">
+                </div>
+                <div class="form-group">
+                    <label>መጠኑ (Size & Qty):</label>
+                    <input type="text" id="custSize" required placeholder="ለምሳሌ: Large, 1 ቅጂ">
+                </div>
+                <div class="form-group">
+                    <label>የክፍያ ማረጋገጫ (Receipt Screenshot):</label>
+                    <input type="file" id="receiptFile" accept="image/*" required>
+                </div>
+                <button type="submit" class="btn" id="submitBtn">ትዕዛዙን ላክ</button>
+                <button type="button" class="btn close-btn" onclick="closeOrderModal()">ይቅር</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        const BOT_TOKEN = '8682453151:AAEaXZETXsmVmSJUM-K2jxC_sCNmBbVeyb8';
+        const CHAT_ID = '7415186084';
+
+        let selectedProduct = '';
+        let selectedPrice = 0;
+
+        function openOrderModal(productName, price) {
+            selectedProduct = productName;
+            selectedPrice = price;
+            document.getElementById('modalTitle').innerText = `ግዢ: ${productName} (${price} ብር)`;
+            document.getElementById('orderModal').style.display = 'flex';
+        }
+
+        function closeOrderModal() {
+            document.getElementById('orderModal').style.display = 'none';
+            document.getElementById('orderForm').reset();
+        }
+
+        async function submitOrder(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('custName').value;
+            const phone = document.getElementById('custPhone').value;
+            const size = document.getElementById('custSize').value;
+            const fileInput = document.getElementById('receiptFile');
+            const submitBtn = document.getElementById('submitBtn');
+
+            if (fileInput.files.length === 0) {
+                alert('እባክዎ የክፍያ ማረጋገጫ ፎቶ ይስቀሉ!');
+                return;
+            }
+
+            submitBtn.innerText = 'በመላክ ላይ...';
+            submitBtn.disabled = true;
+
+            const caption = `🛒 አዲስ ትዕዛዝ መጥቷል!\n\n` +
+                              `👕 ምርት: ${selectedProduct}\n` +
+                              `💰 ዋጋ: ${selectedPrice} ብር\n` +
+                              `👤 ደንበኛ: ${name}\n` +
+                              `📞 ስልክ: ${phone}\n` +
+                              `📏 መጠን: ${size}`;
+
+            const formData = new FormData();
+            formData.append('chat_id', CHAT_ID);
+            formData.append('photo', fileInput.files[0]);
+            formData.append('caption', caption);
+
+            try {
+                let response = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendPhoto`, {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                let data = await response.json();
+                if (data.ok) {
+                    alert('ትዕዛዙ በተሳካ ሁኔታ ተልኳል! እናመሰግናለን።');
+                    closeOrderModal();
+                } else {
+                    alert('ትዕዛዙን መላክ አልተቻለም። እባክዎ እንደገና ይሞክሩ።');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('የኔትወርክ ስህተት አጋጥሟል!');
+            } finally {
+                submitBtn.innerText = 'ትዕዛዙን ላክ';
+                submitBtn.disabled = false;
+            }
+        }
+    </script>
+</body>
+</html>
