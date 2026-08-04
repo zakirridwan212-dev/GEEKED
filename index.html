@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="am" x-data="{ lang: 'am', showModal: false, orderSuccess: false, selectedProduct: null, receiptData: null }">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEEKED - Apparel Import</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans">
+
+    <!-- Header / Nav -->
+    <header class="sticky top-0 z-50 bg-slate-900/85 backdrop-blur-md border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-black tracking-wider text-purple-500">GEEKED</h1>
+            
+            <div class="flex items-center gap-3">
+                <!-- Language Switcher -->
+                <button @click="lang = lang === 'am' ? 'en' : 'am'" class="bg-slate-800 px-3 py-1.5 rounded-lg text-sm font-medium hover:bg-slate-700 transition">
+                    <i class="fa-solid fa-globe mr-1"></i> <span x-text="lang === 'am' ? 'English' : 'አማርኛ'"></span>
+                </button>
+
+                <!-- TikTok Link -->
+                <a href="https://www.tiktok.com/@geeked_tee?_r=1&_t=ZS-98bqvgiGwSW" target="_blank" class="bg-slate-800 p-2 rounded-lg hover:text-purple-400 transition" title="TikTok">
+                    <i class="fa-brands fa-tiktok text-lg"></i>
+                </a>
+
+                <!-- Telegram Support Link -->
+                <a href="https://t.me/geeked_tee" target="_blank" class="bg-slate-800 p-2 rounded-lg hover:text-purple-400 transition" title="Telegram">
+                    <i class="fa-brands fa-telegram text-lg"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-12 px-4 text-center bg-gradient-to-b from-purple-950/40 to-slate-950">
+        <h2 class="text-3xl md:text-5xl font-extrabold mb-4" x-text="lang === 'am' ? 'ለየት ያሉ ጥራት ያላቸው ቲሸርቶች' : 'Unique Quality T-Shirts'"></h2>
+        <p class="text-slate-400 max-w-xl mx-auto mb-6" x-text="lang === 'am' ? 'የምንፈልጉትን ዲዛይን እና መደበኛ ቲሸርቶች አሁኑኑ ይዘዙ!' : 'Order your custom design and normal T-shirts now!'"></p>
+        
+        <!-- Custom Design Notice -->
+        <a href="https://t.me/geeked_tee" target="_blank" class="inline-flex items-center bg-purple-900/30 border border-purple-500/30 px-4 py-2 rounded-xl text-sm text-purple-300 hover:bg-purple-900/50 transition">
+            <i class="fa-brands fa-telegram mr-2 text-purple-400 text-base"></i>
+            <span x-text="lang === 'am' ? 'የሚፈልጉት የተለየ ዲዛይን ካለ በቴሌግራም (@geeked_tee) ላኩልን!' : 'If you have a custom design, send it via Telegram!'"></span>
+        </a>
+    </section>
+
+    <!-- Products Section -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        <h3 class="text-xl font-bold mb-6 border-l-4 border-purple-500 pl-3" x-text="lang === 'am' ? 'ምርቶቻችን (Products)' : 'Our Products'"></h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Product 1 -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden p-4 flex flex-col justify-between">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=500" alt="Normal T-Shirt" class="w-full h-64 object-cover rounded-xl mb-4">
+                    <h4 class="text-lg font-bold" x-text="lang === 'am' ? 'ኖርማል ነጭ እና ጥቁር ቲሸርት' : 'Normal White & Black T-Shirt'"></h4>
+                    <p class="text-purple-400 font-bold mt-2">700 ብር (ETB)</p>
+                </div>
+                <button @click="addToCart({name: lang === 'am' ? 'ኖርማል ቲሸርት (Normal T-Shirt)' : 'Normal T-Shirt', price: 700})" class="mt-4 w-full bg-purple-600 hover:bg-purple-700 py-2.5 rounded-xl font-semibold transition" x-text="lang === 'am' ? 'ይግዙ / አሁን ያዙ' : 'Buy Now'"></button>
+            </div>
+
+            <!-- Product 2 -->
+            <div class="bg-slate-900 border border-slate-800 rounded-2xl overflow-hidden p-4 flex flex-col justify-between">
+                <div>
+                    <img src="https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?w=500" alt="Design T-Shirt" class="w-full h-64 object-cover rounded-xl mb-4">
+                    <h4 class="text-lg font-bold" x-text="lang === 'am' ? 'ዲዛይን ያለው ነጭ እና ጥቁር ቲሸርት' : 'Designed White & Black T-Shirt'"></h4>
+                    <p class="text-purple-400 font-bold mt-2">1300 ብር (ETB)</p>
+                </div>
+                <button @click="addToCart({name: lang === 'am' ? 'ዲዛይን ያለው ቲሸርት (Designed T-Shirt)' : 'Designed T-Shirt', price: 1300})" class="mt-4 w-full bg-purple-600 hover:bg-purple-700 py-2.5 rounded-xl font-semibold transition" x-text="lang === 'am' ? 'ይግዙ / አሁን ያዙ' : 'Buy Now'"></button>
+            </div>
+        </div>
+
+        <!-- Sample / New Arrivals Gallery -->
+        <div class="mt-16">
+            <h3 class="text-xl font-bold mb-6 border-l-4 border-purple-500 pl-3" x-text="lang === 'am' ? 'አዳዲስ ገቢዎች እና ሳምፕሎች (New Arrivals & Samples)' : 'New Arrivals & Samples'"></h3>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <img src="https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=300" class="rounded-xl h-40 w-full object-cover border border-slate-800" alt="Sample 1">
+                <img src="https://images.unsplash.com/photo-1562157873-818bc0726f68?w=300" class="rounded-xl h-40 w-full object-cover border border-slate-800" alt="Sample 2">
+                <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?w=300" class="rounded-xl h-40 w-full object-cover border border-slate-800" alt="Sample 3">
+                <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?w=300" class="rounded-xl h-40 w-full object-cover border border-slate-800" alt="Sample 4">
+            </div>
+        </div>
+    </main>
+
+    <!-- Checkout Modal -->
+    <div x-show="showModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center p-4 z-50" style="display: none;">
+        <div class="bg-slate-900 border border-slate-800 max-w-md w-full p-6 rounded-2xl relative max-h-[90vh] overflow-y-auto">
+            <button @click="showModal = false" class="absolute top-4 right-4 text-slate-400 hover:text-white"><i class="fa-solid fa-xmark text-xl"></i></button>
+            
+            <template x-if="!orderSuccess">
+                <form @submit.prevent="submitOrder">
+                    <h3 class="text-xl font-bold mb-2" x-text="lang === 'am' ? 'የማዘዣ እና ክፍያ ፎርም' : 'Checkout Form'"></h3>
+                    <p class="text-sm text-purple-400 mb-4" x-text="selectedProduct ? (selectedProduct.name + ' - ' + selectedProduct.price + ' ETB') : ''"></p>
+                    
+                    <div class="mb-3">
+                        <label class="block text-sm text-slate-400 mb-1" x-text="lang === 'am' ? 'ሙሉ ስም (Full Name)' : 'Full Name'"></label>
+                        <input type="text" id="fullname" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-white focus:outline-none focus:border-purple-500">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="block text-sm text-slate-400 mb-1" x-text="lang === 'am' ? 'ስልክ ቁጥር (Phone Number)' : 'Phone Number'"></label>
+                        <input type="tel" id="phone" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-white focus:outline-none focus:border-purple-500">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="block text-sm text-slate-400 mb-1" x-text="lang === 'am' ? 'አድራሻ (Address)' : 'Address'"></label>
+                        <input type="text" id="address" required class="w-full bg-slate-800 border border-slate-700 rounded-xl px-4 py-2 text-white focus:outline-none focus:border-purple-500">
+                    </div>
+
+                    <!-- Payment Information Section with Updated Accounts -->
+                    <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 mb-3 space-y-2">
+                        <h4 class="font-bold text-purple-400 text-sm" x-text="lang === 'am' ? 'የክፍያ አካውንቶች (Payment Accounts)' : 'Payment Accounts'"></h4>
+                        
+                        <div class="text-xs text-slate-300 bg-slate-900 p-2.5 rounded-lg border border-slate-800">
+                            <p class="font-semibold text-purple-300">ንግድ ባንክ (CBE):</p>
+                            <p>ቁጥር: <strong class="text-white">1000744476918</strong></p>
+                            <p>ስም: <strong class="text-white">Imran</strong></p>
+                        </div>
+
+                        <div class="text-xs text-slate-300 bg-slate-900 p-2.5 rounded-lg border border-slate-800">
+                            <p class="font-semibold text-purple-300">ቴሌብር (Telebirr):</p>
+                            <p>ቁጥር: <strong class="text-white">0929095285</strong></p>
+                            <p>ስም: <strong class="text-white">Salih</strong></p>
+                        </div>
+                        
+                        <div class="pt-1">
+                            <label class="block text-xs text-slate-400 mb-1" x-text="lang === 'am' ? 'የክፍያ ትራንዛክሽን ቁጥር (Transaction ID)' : 'Transaction ID'"></label>
+                            <input type="text" id="txId" required placeholder="trx..." class="w-full bg-slate-800 border border-slate-700 rounded-xl px-3 py-2 text-sm text-white focus:outline-none focus:border-purple-500">
+                        </div>
+
+                        <div class="pt-1">
+                            <label class="block text-xs text-slate-400 mb-1" x-text="lang === 'am' ? 'የክፍያ ሪሲት ስክሪንሾት (Upload Receipt)' : 'Upload Receipt Screenshot'"></label>
+                            <input type="file" id="receiptFile" accept="image/*" class="w-full text-xs text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-xl file:border-0 file:text-xs file:font-semibold file:bg-purple-600 file:text-white hover:file:bg-purple-700 cursor-pointer">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 py-3 rounded-xl font-bold transition" x-text="lang === 'am' ? 'ክፍያ ፈጽሜ ኦርደር አድርግ' : 'Submit Order & Pay'"></button>
+                </form>
+            </template>
+
+            <!-- Receipt View -->
+            <template x-if="orderSuccess">
+                <div class="text-center py-4">
+                    <div class="w-16 h-16 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center mx-auto mb-4 text-2xl">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-2" x-text="lang === 'am' ? 'ትዕዛዝዎ ተሳክቷል!' : 'Order Successful!'"></h3>
+                    <p class="text-sm text-slate-400 mb-6" x-text="lang === 'am' ? 'የክፍያ ሪሲትዎ ከዚህ በታች ተዘጋጅቷል።' : 'Your payment receipt is generated below.'"></p>
+
+                    <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl text-left text-sm mb-6 space-y-2">
+                        <p><strong>Name:</strong> <span x-text="receiptData?.name"></span></p>
+                        <p><strong>Phone:</strong> <span x-text="receiptData?.phone"></span></p>
+                        <p><strong>Address:</strong> <span x-text="receiptData?.address"></span></p>
+                        <p><strong>Item:</strong> <span x-text="receiptData?.item"></span></p>
+                        <p><strong>Price:</strong> <span x-text="receiptData?.price"></span> ETB</p>
+                        <p><strong>TX ID:</strong> <span x-text="receiptData?.txId"></span></p>
+                        <p><strong>Receipt File:</strong> <span x-text="receiptData?.fileName" class="text-purple-400"></span></p>
+                    </div>
+
+                    <button @click="showModal = false; orderSuccess = false;" class="w-full bg-slate-800 hover:bg-slate-700 py-2.5 rounded-xl font-semibold" x-text="lang === 'am' ? 'ዘግቶ መውጣት' : 'Close'"></button>
+                </div>
+            </template>
+        </div>
+    </div>
+
+    <!-- Script Logic -->
+    <script>
+        function addToCart(product) {
+            // Alpine.js data access
+            const alpineEl = document.querySelector('[x-data]');
+            if (alpineEl && alpineEl.__x) {
+                alpineEl.__x.$data.selectedProduct = product;
+                alpineEl.__x.$data.showModal = true;
+            } else {
+                // Fallback for Alpine v3 structure
+                window.selectedProduct = product;
+            }
+        }
+
+        // Alpine v3 specific helper function setup
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('app', () => ({
+                lang: 'am',
+                showModal: false,
+                orderSuccess: false,
+                selectedProduct: null,
+                receiptData: null,
+                addToCart(product) {
+                    this.selectedProduct = product;
+                    this.showModal = true;
+                }
+            }));
+        });
+
+        function submitOrder() {
+            const name = document.getElementById('fullname').value;
+            const phone = document.getElementById('phone').value;
+            const address = document.getElementById('address').value;
+            const txId = document.getElementById('txId').value;
+            const fileInput = document.getElementById('receiptFile');
+            const fileName = fileInput.files.length > 0 ? fileInput.files[0].name : 'Not attached';
+
+            // Find Alpine data context
+            const alpineContainer = document.querySelector('[x-data]');
+            let appData = alpineContainer.__x ? alpineContainer.__x.$data : null;
+            
+            // Get selected product info safely
+            let prodName = 'T-Shirt';
+            let prodPrice = 700;
+            
+            if (window.selectedProduct) {
+                prodName = window.selectedProduct.name;
+                prodPrice = window.selectedProduct.price;
+            }
+
+            if (appData && appData.selectedProduct) {
+                prodName = appData.selectedProduct.name;
+                prodPrice = appData.selectedProduct.price;
+            }
+
+            const receiptInfo = { 
+                name, 
+                phone, 
+                address,
+                item: prodName, 
+                price: prodPrice, 
+                txId,
+                fileName
+            };
+
+            if (appData) {
+                appData.receiptData = receiptInfo;
+                appData.orderSuccess = true;
+            }
+
+            // Telegram Notification Integration with Owner Credentials
+            const botToken = '8682453151:AAEaXZETXsmVmSJUM-K2jxC_sCNmBbVeyb8';
+            const chatId = '7415186084';
+            const message = `🚨 አዲስ ትዕዛዝ (New Order)!\n\nምርት: ${prodName}\nዋጋ: ${prodPrice} ብር\nስም: ${name}\nስልክ: ${phone}\nአድራሻ: ${address}\nየክፍያ ትራንዛክሽን (TX): ${txId}\nሪሲት ፋይል: ${fileName}`;
+
+            fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ chat_id: chatId, text: message })
+            }).catch(err => console.log(err));
+        }
+    </script>
+</body>
+</html>
