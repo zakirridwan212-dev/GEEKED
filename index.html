@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEEKED - ቲሸርቶች</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333;
+        }
+        .container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto 40px auto;
+        }
+        .card {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            overflow: hidden;
+            text-align: center;
+            padding-bottom: 15px;
+        }
+        .card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        .card h3 {
+            margin: 15px 0 10px;
+            font-size: 18px;
+            color: #222;
+        }
+        .price {
+            color: #e74c3c;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .order-btn {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        .order-btn:hover {
+            background-color: #219653;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>GEEKED ቲሸርቶች</h1>
+
+    <!-- 1,300 ብር የሆኑት የአርቲስት ፎቶዎች ያሏቸው ቲሸርቶች -->
+    <h2>የአርቲስት ፎቶዎች (1,300 ብር)</h2>
+    <div class="container">
+        <div class="card">
+            <img src="1000063660.jpg" alt="ክርስቲያኖ ሮናልዶ">
+            <h3>ክርስቲያኖ ሮናልዶ (Cristiano Ronaldo)</h3>
+            <div class="price">1,300 ብር</div>
+            <button class="order-btn" onclick="sendOrder('ክርስቲያኖ ሮናልዶ (Cristiano Ronaldo)', '1,300 ብር')">አሁን ግዛ</button>
+        </div>
+        <div class="card">
+            <img src="1000063666.jpg" alt="ድሬክ ኢሞጂ">
+            <h3>ድሬክ ኢሞጂ (Drake Emoji)</h3>
+            <div class="price">1,300 ብር</div>
+            <button class="order-btn" onclick="sendOrder('ድሬክ ኢሞጂ (Drake Emoji)', '1,300 ብር')">አሁን ግዛ</button>
+        </div>
+        <div class="card">
+            <img src="1000063664.jpg" alt="ድሬክ ኮላጅ">
+            <h3>ድሬክ ኮላጅ (Drake Vintage)</h3>
+            <div class="price">1,300 ብር</div>
+            <button class="order-btn" onclick="sendOrder('ድሬክ ኮላጅ (Drake Vintage)', '1,300 ብር')">አሁን ግዛ</button>
+        </div>
+        <div class="card">
+            <img src="1000063665.jpg" alt="ያንግ ትግ ትዊት">
+            <h3>ያንግ ތግ ትዊት (Young Thug Tweet)</h3>
+            <div class="price">1,300 ብር</div>
+            <button class="order-btn" onclick="sendOrder('ያንግ ތግ ትዊት (Young Thug Tweet)', '1,300 ብር')">አሁን ግዛ</button>
+        </div>
+        <div class="card">
+            <img src="1000063668.jpg" alt="ዘ ዊ켄ድ">
+            <h3>ዘ ዊ켄ድ (The Weeknd)</h3>
+            <div class="price">1,300 ብር</div>
+            <button class="order-btn" onclick="sendOrder('ዘ ዊ켄ድ (The Weeknd)', '1,300 ብር')">አሁን ግዛ</button>
+        </div>
+        <div class="card">
+            <img src="1000063667.jpg" alt="አፕ ሳኪ">
+            <h3>አፕ ሳኪ (A$AP Rocky - Flag)</h3>
+            <div class="price">1,300 ብር</div>
+            <button class="order-btn" onclick="sendOrder('አፕ ሳኪ (A$AP Rocky - Flag)', '1,300 ብር')">አሁን ግዛ</button>
+        </div>
+        <div class="card">
+            <img src="1000063661.jpg" alt="Don't Talk To Me">
+            <h3>"Don't Talk To Me..." (ጥቁር)</h3>
+            <div class="price">1,300 ብር</div>
+            <button class="order-btn" onclick="sendOrder('Don\'t Talk To Me (ጥቁር)', '1,300 ብር')">አሁን ግዛ</button>
+        </div>
+        <div class="card">
+            <img src="1000063657.jpg" alt="ያንግ ቦይ 1">
+            <h3>ያንግ ቦይ - 38 Baby (1)</h3>
+            <div class="price">1,300 ብር</div>
+            <button class="order-btn" onclick="sendOrder('ያንግ ቦይ - 38 Baby (1)', '1,300 ብር')">አሁን ግዛ</button>
+        </div>
+        <div class="card">
+            <img src="1000063659.jpg" alt="ያንግ ቦይ 2">
+            <h3>ያንግ ቦይ - 38 Baby (2)</h3>
+            <div class="price">1,300 ብር</div>
+            <button class="order-btn" onclick="sendOrder('ያንግ ቦይ - 38 Baby (2)', '1,300 ብር')">አሁን ግዛ</button>
+        </div>
+        <div class="card">
+            <img src="1000063656.jpg" alt="AI YoungBoy">
+            <h3>AI YoungBoy (Vintage)</h3>
+            <div class="price">1,300 ብር</div>
+            <button class="order-btn" onclick="sendOrder('AI YoungBoy (Vintage)', '1,300 ብር')">አሁን ግዛ</button>
+        </div>
+    </div>
+
+    <!-- አዲሶቹ የ 700 ብር ልሙጥ ጥቁር እና ነጭ ቲሸርቶች -->
+    <h2>ልሙጥ ጥቁር እና ነጭ ቲሸርቶች (700 ብር)</h2>
+    <div class="container">
+        <div class="card">
+            <img src="plain-white.jpg" alt="ልሙጥ ነጭ ቲሸርት">
+            <h3>ልሙጥ ነጭ ቲሸርት (Plain White T-Shirt)</h3>
+            <div class="price">700 ብር</div>
+            <button class="order-btn" onclick="sendOrder('ልሙጥ ነጭ ቲሸርት (Plain White)', '700 ብር')">አሁን ግዛ</button>
+        </div>
+        <div class="card">
+            <img src="plain-black.jpg" alt="ልሙጥ ጥቁር ቲሸርት">
+            <h3>ልሙጥ ጥቁር ቲሸርት (Plain Black T-Shirt)</h3>
+            <div class="price">700 ብር</div>
+            <button class="order-btn" onclick="sendOrder('ልሙጥ ጥቁር ቲሸርት (Plain Black)', '700 ብር')">አሁን ግዛ</button>
+        </div>
+    </div>
+
+    <script>
+        function sendOrder(productName, productPrice) {
+            const customerName = prompt("እባክዎን ስምዎን ያስገቡ:");
+            if (!customerName) return;
+            
+            const customerPhone = prompt("እባክዎን የስልክ ቁጥርዎን ያስገቡ:");
+            if (!customerPhone) return;
+
+            const botToken = "8682453151:AAEaXZeTXsmVmSJUM-K2jxC_sCNmBbVeyb8";
+            const chatId = "7415186084";
+            
+            const message = `🛍 አዲስ ትዕዛዝ መጥቷል!\n\n👕 እቃው: ${productName}\n💰 ዋጋ: ${productPrice}\n👤 ስም: ${customerName}\n📞 ስልክ: ${customerPhone}`;
+
+            const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+            fetch(url)
+                .then(response => {
+                    if (response.ok) {
+                        alert("ትዕዛዝዎ በተሳካ ሁኔታ ወደ ቴሌግራም ቦት ተልኳል! እናመሰግናለን።");
+                    } else {
+                        alert("ትዕዛዙን መላክ አልተቻለም። እባክዎ እንደገና ይሞክሩ።");
+                    }
+                })
+                .catch(error => {
+                    alert("ስህተት አጋጥሟል። ኢንተርኔትዎን ይፈትሹ።");
+                });
+        }
+    </script>
+
+</body>
+</html>
